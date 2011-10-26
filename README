@@ -1,0 +1,10 @@
+anttsp.py is the file to run
+
+Run without additional arguments, it solves the 10-city TSP
+
+You can also do this
+python anttsp.py 14
+
+Other values <= 14 work as well
+
+NB: Not yet guaranteed free of synchronization bugs
