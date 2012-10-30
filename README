@@ -20,4 +20,3 @@ python anttsp.py 14
 
 Other values <= 14 tested as well
 
-Bugs: Not yet guaranteed free of synchronization bugs
