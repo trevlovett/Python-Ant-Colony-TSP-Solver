@@ -2,7 +2,7 @@ from threading import Lock
 
 class AntGraph:
     def __init__(self, num_nodes, delta_mat, tau_mat=None):
-        print len(delta_mat)
+        print (len(delta_mat))
         if len(delta_mat) != num_nodes:
             raise Exception("len(delta) != num_nodes")
 
@@ -41,8 +41,8 @@ class AntGraph:
         # initial tau 
         self.tau0 = 1.0 / (self.num_nodes * 0.5 * avg)
 
-        print "Average = %s" % (avg,)
-        print "Tau0 = %s" % (self.tau0)
+        print ("Average = %s" % (avg,))
+        print ("Tau0 = %s" % (self.tau0))
 
         for r in range(0, self.num_nodes):
             for s in range(0, self.num_nodes):

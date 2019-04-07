@@ -21,7 +21,12 @@ if __name__ == "__main__":
         num_iterations = 20
         num_repetitions = 1
 
-    stuff = pickle.load(open("citiesAndDistances.pickled", "r"))
+    f = open("citiesAndDistances.pickled", "rb")
+    u = pickle._Unpickler(f)
+    u.encoding = 'latin1'
+    stuff = u.load()
+    f.close()
+
     cities = stuff[0]
     cost_mat = stuff[1]
 
@@ -30,12 +35,12 @@ if __name__ == "__main__":
         for i in range(0, num_nodes):
             cost_mat[i] = cost_mat[i][0:num_nodes]
 
-    print cost_mat
+    print (cost_mat)
 
     try:
         graph = AntGraph(num_nodes, cost_mat)
         best_path_vec = None
-        best_path_cost = sys.maxint
+        best_path_cost = sys.maxsize
         for i in range(0, num_repetitions):
             graph.reset_tau()
             ant_colony = AntColony(graph, num_ants, num_iterations)
@@ -44,14 +49,14 @@ if __name__ == "__main__":
                 best_path_vec = ant_colony.best_path_vec
                 best_path_cost = ant_colony.best_path_cost
 
-        print "\n------------------------------------------------------------"
-        print "                     Results                                "
-        print "------------------------------------------------------------"
-        print "\nBest path = %s" % (best_path_vec,)
+        print ("\n------------------------------------------------------------")
+        print ("                     Results                                ")
+        print ("------------------------------------------------------------")
+        print ("\nBest path = %s" % (best_path_vec,))
         for node in best_path_vec:
-            print cities[node] + " ",
-        print "\nBest path cost = %s\n" % (best_path_cost,)
+            print (cities[node] + " ",)
+        print ("\nBest path cost = %s\n" % (best_path_cost,))
     
-    except Exception, e:
-        print "exception: " + str(e)
+    except Exception as e:
+        print ("exception: " + str(e))
         traceback.print_exc()
