@@ -1,5 +1,4 @@
 # Python Ant Colony TSP Solver
------------------------------
 
 Uses Ant Colony Optimization to solve the TSP.  
 See http://en.wikipedia.org/wiki/Ant_colony_optimization_algorithms 
