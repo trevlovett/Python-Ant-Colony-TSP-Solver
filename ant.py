@@ -47,7 +47,7 @@ class Ant(Thread):
             self.path_vec.append(new_node)
             self.path_mat[self.curr_node][new_node] = 1  #adjacency matrix representing path
 
-            print "Ant %s : %s, %s" % (self.ID, self.path_vec, self.path_cost,)
+            print ("Ant %s : %s, %s" % (self.ID, self.path_vec, self.path_cost,))
             
             self.local_updating_rule(self.curr_node, new_node)
             graph.lock.release()
@@ -59,7 +59,7 @@ class Ant(Thread):
 
         # send our results to the colony
         self.colony.update(self)
-        print "Ant thread %s terminating." % (self.ID,)
+        print ("Ant thread %s terminating." % (self.ID,))
 
         # allows thread to be restarted (calls Thread.__init__)
         self.__init__(self.ID, self.start_node, self.colony)
@@ -74,7 +74,7 @@ class Ant(Thread):
         max_node = -1
 
         if q < self.Q0:
-            print "Exploitation"
+            print ("Exploitation")
             max_val = -1
             val = None
 
@@ -87,7 +87,7 @@ class Ant(Thread):
                     max_val = val
                     max_node = node
         else:
-            print "Exploration"
+            print ("Exploration")
             sum = 0
             node = -1
 
@@ -100,12 +100,12 @@ class Ant(Thread):
 
             avg = sum / len(self.nodes_to_visit)
 
-            print "avg = %s" % (avg,)
+            print ("avg = %s" % (avg,))
 
             for node in self.nodes_to_visit.values():
                 p = graph.tau(curr_node, node) * math.pow(graph.etha(curr_node, node), self.Beta) 
                 if p > avg:
-                    print "p = %s" % (p,)
+                    print ("p = %s" % (p,))
                     max_node = node
 
             if max_node == -1:
